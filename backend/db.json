@@ -1,0 +1,51 @@
+{
+  "users": [
+    {
+      "id": "admin001",
+      "name": "Admin",
+      "email": "admin@momo.com",
+      "phone": "9800000000",
+      "password": "9e006aece7492d8f9e9318258754f720:5f87c3426594575c005905ba8f57d4701a4e2219e6167705e08ec6cfa2752348cfd9b22aaaf0188eae4d51fda23139e07ed3b5eddc6c1fb6bb5c3324c9f321bb",
+      "isAdmin": true
+    }
+  ],
+  "products": [
+    {
+      "id": "prod1",
+      "name": "Classic Steamed Momo",
+      "description": "Traditional Nepali steamed momos filled with a savory vegetable mixture and served with tangy tomato sesame chutney.",
+      "price": 120,
+      "category": "Veg",
+      "stock": 50,
+      "variations": ["Spicy", "Non‑Spicy"],
+      "images": ["/images/hero.jpg"],
+      "createdAt": "2025-08-04T00:00:00.000Z",
+      "updatedAt": "2025-08-04T00:00:00.000Z"
+    },
+    {
+      "id": "prod2",
+      "name": "Crispy Fried Momo",
+      "description": "Golden fried momos with a crunchy exterior and juicy buff filling, served with house‑made dipping sauce.",
+      "price": 150,
+      "category": "Fried",
+      "stock": 40,
+      "variations": ["Buff", "Chicken"],
+      "images": ["/images/fried.jpg"],
+      "createdAt": "2025-08-04T00:00:00.000Z",
+      "updatedAt": "2025-08-04T00:00:00.000Z"
+    },
+    {
+      "id": "prod3",
+      "name": "Jhol Momo",
+      "description": "Steamed momos drenched in a spicy jhol (broth) made from tomato, sesame, and herbs for a comforting experience.",
+      "price": 140,
+      "category": "Jhol",
+      "stock": 30,
+      "variations": ["Veg", "Buff"],
+      "images": ["/images/jhol.jpg"],
+      "createdAt": "2025-08-04T00:00:00.000Z",
+      "updatedAt": "2025-08-04T00:00:00.000Z"
+    }
+  ],
+  "orders": []
+}

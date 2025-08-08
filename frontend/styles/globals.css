@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Set a pleasant global background and default text color */
+html,
+body {
+  @apply bg-primary text-gray-800;
+  font-family: theme('fontFamily.sans');
+}
+
+/* Smooth transitions for interactive elements */
+a,
+button {
+  @apply transition-all duration-200;
+}
