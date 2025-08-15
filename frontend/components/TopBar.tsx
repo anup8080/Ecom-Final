@@ -54,7 +54,7 @@ export default function TopBar({ query, onQueryChange }: TopBarProps) {
 
         {/* Brand */}
         <Link href="/" className="text-xl font-semibold tracking-tight">
-          MomoHub
+          BL
         </Link>
 
         {/* Search bar */}

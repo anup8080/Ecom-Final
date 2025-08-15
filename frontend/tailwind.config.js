@@ -9,7 +9,8 @@ module.exports = {
       colors: {
         // Updated colour palette for a sleek blue aesthetic
         primary: {
-          DEFAULT: '#eff6ff', // light blue background
+          // DEFAULT: '#eff6ff', // light blue background
+          DEFAULT: '#ffffff',
           dark: '#dbeafe',
         },
         accent: '#3b82f6', // vibrant blue for buttons and highlights

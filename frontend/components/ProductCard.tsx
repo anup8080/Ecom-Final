@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '../contexts/CartContext';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000';
+
 
 interface Product {
   id: string;
@@ -41,7 +43,11 @@ export default function ProductCard({ product }: Props) {
         <div className="relative aspect-w-1 aspect-h-1 overflow-hidden">
           {product.images && product.images[0] ? (
             <Image
-              src={product.images[0]}
+              src={
+                        product.images?.[0]
+                          ? `${API_BASE}${product.images[0].startsWith('/') ? product.images[0] : '/' + product.images[0]}`
+                          : '/images/placeholder.png'
+                      }
               alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, 25vw"
@@ -56,7 +62,7 @@ export default function ProductCard({ product }: Props) {
         <h3 className="text-lg font-medium mb-1">{product.name}</h3>
         <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
         <div className="flex items-center justify-between">
-          <span className="text-accent font-semibold">रू {product.price}</span>
+          <span className="text-accent font-semibold">रू  {product.price}</span>
           <button
             onClick={handleAdd}
             className="bg-accent text-white text-sm px-3 py-1 rounded hover:bg-blue-600 focus:outline-none"
