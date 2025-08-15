@@ -5,6 +5,8 @@ import TopBar from '../../components/TopBar';
 import { useCart } from '../../contexts/CartContext';
 import { getProductById } from '../../services/productService';
 import type { Product } from '../../services/types';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000';
+
 
 interface Props {
   product: Product | null;
@@ -62,31 +64,36 @@ export default function ProductPage({ product }: Props) {
           {/* Image gallery */}
           <div>
             <div className="relative w-full overflow-hidden rounded-2xl bg-gray-50" style={{ paddingTop: '75%' }}>
-              {product.images && product.images.length > 0 ? (
-                <Image
-                  src={product.images[0]}
-                  alt={product.name}
-                  fill
-                  className="object-cover rounded-2xl"
-                />
-              ) : (
-                <Image
-                  src="/images/placeholder.png"
-                  alt="Placeholder"
-                  fill
-                  className="object-cover rounded-2xl"
-                />
-              )}
-            </div>
-            {product.images && product.images.length > 1 && (
-              <div className="mt-3 flex space-x-2 overflow-x-auto">
-                {product.images.slice(1).map((img, idx) => (
-                  <div key={idx} className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg border border-gray-200">
-                    <Image src={img} alt={`${product.name} ${idx + 1}`} fill className="object-cover" />
-                  </div>
-                ))}
-              </div>
-            )}
+  {product?.images?.[0] ? (
+    <img
+      src={`${API_BASE}${product.images[0].startsWith('/') ? product.images[0] : '/' + product.images[0]}`}
+      alt={product.name}
+      className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+    />
+  ) : (
+    <img
+      src="/images/placeholder.png"
+      alt="Placeholder"
+      className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+    />
+  )}
+</div>
+            {product?.images && product.images.length > 1 && (
+  <div className="mt-3 flex space-x-2 overflow-x-auto">
+    {product.images.slice(1).map((img, idx) => (
+      <div
+        key={idx}
+        className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg border border-gray-200"
+      >
+        <img
+          src={`${API_BASE}${img.startsWith('/') ? img : '/' + img}`}
+          alt={`${product.name} ${idx + 1}`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    ))}
+  </div>
+)}
           </div>
 
           {/* Product details */}

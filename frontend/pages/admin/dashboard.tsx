@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000';
+
 
 interface Product {
   id: string;
@@ -215,7 +217,11 @@ export default function AdminDashboard() {
                     <td className="p-2">
                       {product.images && product.images[0] ? (
                         <img
-                          src={product.images[0]}
+                          src={
+                            product.images?.[0]
+                              ? `${API_BASE}${product.images[0].startsWith('/') ? product.images[0] : '/' + product.images[0]}`
+                              : '/images/placeholder.png'
+                          }
                           alt={product.name}
                           className="w-12 h-12 object-cover rounded"
                         />
@@ -223,6 +229,7 @@ export default function AdminDashboard() {
                         <div className="w-12 h-12 bg-gray-200 rounded" />
                       )}
                     </td>
+
                     <td className="p-2">{product.name}</td>
                     <td className="p-2">रू {product.price}</td>
                     <td className="p-2">{(product as any).stock ?? '-'}</td>

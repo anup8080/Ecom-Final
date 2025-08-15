@@ -4,7 +4,7 @@ import Image from 'next/image';
 import TopBar from '../components/TopBar';
 import { getProducts } from '../services/productService';
 import type { Product } from '../services/types';
-
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || 'http://localhost:4000';
 /**
  * The home page displays a banner, category filters, sorting options and a
  * grid of products.  It consumes the `getProducts` API and performs
@@ -164,6 +164,7 @@ export default function Home() {
             <div className="col-span-full py-10 text-center text-gray-500">No products found.</div>
           ) : (
             filtered.map((p) => {
+              console.log(p)
               // Determine any discount and compute display price.  Discount is
               // expected to be a percentage (e.g. 20 for 20% off).  If no
               // discount field is present the original price is shown.
@@ -176,7 +177,11 @@ export default function Home() {
                   {/* Image wrapper */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-50">
                     <img
-                      src={p.images?.[0] || '/images/placeholder.png'}
+                      src={
+                        p.images?.[0]
+                          ? `${API_BASE}${p.images[0].startsWith('/') ? p.images[0] : '/' + p.images[0]}`
+                          : '/images/placeholder.png'
+                      }
                       alt={p.name}
                       className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.05]"
                     />

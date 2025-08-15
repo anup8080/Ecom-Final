@@ -1,10 +1,21 @@
 const express = require('express');
 const multer = require('multer');
+const path = require('path');
 const { getProducts, getProductById, createProduct, updateProduct, deleteProduct } = require('../controllers/productController');
 const { authMiddleware, requireRole } = require('../middleware/auth');
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname); // keeps original extension
+    const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1E9)}${ext}`;
+    cb(null, uniqueName);
+  }
+});
 // Configure multer for file uploads
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ storage });
 
 const router = express.Router();
 
